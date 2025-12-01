@@ -181,7 +181,9 @@ public class SafeRegex {
                 cached = new CachedRegexResult(new PatternSyntaxException("the regex is a lie (regex is null)", "there is no regex", -1));
             }
 
-            REGEX_CACHE.put(regex, cached);
+            if (regex != null) {
+                REGEX_CACHE.put(regex, cached);
+            }
         }
 
         return cached;
@@ -241,7 +243,9 @@ public class SafeRegex {
                 cached = new CachedGlobResult(null, new PatternSyntaxException("address is null", "no", -1)); // uh idk the best way to handle this
             }
 
-            GLOB_CACHE.put(address, cached);
+            if (address != null) {
+                GLOB_CACHE.put(address, cached);
+            }
         }
 
         return cached.regex;
